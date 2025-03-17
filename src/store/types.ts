@@ -79,6 +79,8 @@ export interface GameActions {
 
 export type GameStore = GameState & GameActions
 
+export type HistoryStore = GameHistory & HistoryActions
+
 export interface HistoryActions {
   addGameToHistory: (stats: Omit<GameStats, 'id' | 'date'>) => void
   clearHistory: () => void

@@ -1,15 +1,20 @@
 import { memo } from 'react'
 import { useGameStore } from '@store/gameStore'
 import { useLanguageStore } from '@store/languageStore'
-import { DIFFICULTY_CONFIG } from '@store/types'
+import { DIFFICULTY_CONFIG, GameStore } from '@store/types'
 import './GameStats.scss'
+import { useShallow } from 'zustand/shallow'
 
 const GameStats = () => {
-  const attempts = useGameStore((state) => state.attempts)
-  const elapsedTime = useGameStore((state) => state.currentTime)
-  const matchedPairs = useGameStore((state) => state.matchedPairs)
-  const difficulty = useGameStore((state) => state.difficulty)
-  const isGameCompleted = useGameStore((state) => state.isGameCompleted)
+  const { attempts, elapsedTime, matchedPairs, difficulty, isGameCompleted } = useGameStore(
+    useShallow((state: GameStore) => ({
+      attempts: state.attempts,
+      elapsedTime: state.elapsedTime,
+      matchedPairs: state.matchedPairs,
+      difficulty: state.difficulty,
+      isGameCompleted: state.isGameCompleted,
+    }))
+  )
   const { t } = useLanguageStore()
 
   const totalPairs = DIFFICULTY_CONFIG[difficulty].totalPairs

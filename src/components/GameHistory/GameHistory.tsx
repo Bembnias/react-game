@@ -1,12 +1,19 @@
 import { useEffect, useState } from 'react'
 import { useHistoryStore } from '@store/historyStore'
 import { useLanguageStore } from '@store/languageStore'
-import { DifficultyLevel, GameStats } from '@store/types'
+import { DifficultyLevel, GameStats, HistoryStore } from '@store/types'
 import './GameHistory.scss'
 import Modal from '@components/Modal'
+import { useShallow } from 'zustand/shallow'
 
 const GameHistory = () => {
-  const { games, loadHistoryFromStorage, clearHistory } = useHistoryStore()
+  const { games, loadHistoryFromStorage, clearHistory } = useHistoryStore(
+    useShallow((state: HistoryStore) => ({
+      games: state.games,
+      loadHistoryFromStorage: state.loadHistoryFromStorage,
+      clearHistory: state.clearHistory,
+    }))
+  )
   const { t } = useLanguageStore()
   const [isExpanded, setIsExpanded] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)

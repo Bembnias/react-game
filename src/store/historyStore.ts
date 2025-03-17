@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { immer } from 'zustand/middleware/immer'
 import { v4 as uuidv4 } from 'uuid'
-import { GameHistory, GameStats, HistoryActions } from './types'
+import { GameStats, HistoryStore } from './types'
 
 // ===== LocalStorage key for saved games =====
 const STORAGE_KEY = 'memory-game-history'
@@ -24,7 +24,7 @@ const saveHistoryToStorage = (games: GameStats[]): void => {
   }
 }
 
-export const useHistoryStore = create<GameHistory & HistoryActions>()(
+export const useHistoryStore = create<HistoryStore>()(
   immer((set) => ({
     games: [],
 
