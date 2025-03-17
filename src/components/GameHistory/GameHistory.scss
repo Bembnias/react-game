@@ -1,0 +1,185 @@
+@use 'sass:color';
+@use '@styles/variables' as *;
+@use '@styles/mixins' as *;
+
+.game-history {
+  margin-top: $spacing-lg;
+  background-color: $history-bg-color;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $spacing-md;
+    background-color: rgba($dark-text, 0.2);
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba($dark-text, 0.3);
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: $light-text;
+  }
+
+  &__toggle {
+    background: none;
+    border: none;
+    color: $light-text;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  &__content {
+    padding: $spacing-md;
+    max-height: 400px;
+    overflow-y: auto;
+
+    // Scrollbar
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba($light-text, 0.1);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba($light-text, 0.3);
+      border-radius: 4px;
+
+      &:hover {
+        background-color: rgba($light-text, 0.5);
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: $spacing-md;
+  }
+
+  &__clear {
+    padding: $spacing-xs $spacing-sm;
+    background-color: $error-color;
+    color: $light-text;
+    border: none;
+    border-radius: $border-radius-sm;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: color.adjust($error-color, $lightness: -10%);
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+
+  &__list-header {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 1fr;
+    gap: $spacing-sm;
+    padding: $spacing-xs;
+    background-color: rgba($dark-text, 0.3);
+    border-radius: $border-radius-sm;
+    font-weight: 600;
+    color: $light-text-secondary;
+    font-size: 0.9rem;
+
+    @include responsive(mobile) {
+      display: none;
+    }
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 1fr;
+    gap: $spacing-sm;
+    padding: $spacing-sm;
+    background-color: rgba($light-text, 0.05);
+    border-radius: $border-radius-sm;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: rgba($light-text, 0.1);
+    }
+
+    @include responsive(mobile) {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      padding: $spacing-xs;
+    }
+  }
+
+  &__date {
+    font-weight: 500;
+
+    @include responsive(mobile) {
+      grid-column: 1 / -1;
+      margin-bottom: $spacing-xs;
+      font-size: 0.9rem;
+    }
+  }
+
+  &__difficulty {
+    text-align: center;
+    padding: 2px $spacing-xs;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    &--easy {
+      background-color: rgba($primary-color, 0.2);
+      color: color.adjust($primary-color, $lightness: 20%);
+    }
+
+    &--medium {
+      background-color: rgba($secondary-color, 0.2);
+      color: color.adjust($secondary-color, $lightness: 20%);
+    }
+
+    &--hard {
+      background-color: rgba($tertiary-color, 0.2);
+      color: color.adjust($tertiary-color, $lightness: 20%);
+    }
+  }
+
+  &__attempts,
+  &__duration {
+    text-align: center;
+
+    @include responsive(mobile) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: $light-text-secondary;
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  &__empty {
+    text-align: center;
+    padding: $spacing-md;
+    color: $light-text-secondary;
+    font-style: italic;
+  }
+}

@@ -1,0 +1,38 @@
+@use '@styles/variables' as *;
+@use '@styles/mixins' as *;
+
+.game-board {
+  display: grid;
+  gap: $grid-gap;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: $spacing-md;
+
+  &[data-difficulty='easy'] {
+    background-color: rgba($primary-color, 0.1);
+  }
+
+  &[data-difficulty='medium'] {
+    background-color: rgba($secondary-color, 0.1);
+  }
+
+  &[data-difficulty='hard'] {
+    background-color: rgba($tertiary-color, 0.1);
+  }
+
+  @include responsive(desktop) {
+    gap: $grid-gap;
+    padding: $spacing-md;
+  }
+
+  @include responsive(tablet) {
+    gap: $grid-gap-tablet;
+    padding: $spacing-sm;
+  }
+
+  @include responsive(mobile) {
+    gap: $grid-gap-mobile;
+    padding: $spacing-xs;
+  }
+}

@@ -1,0 +1,51 @@
+@use 'sass:color';
+
+// Color palette
+$bg-color: #121212;
+$primary-color: #2563eb;
+$secondary-color: #9333ea;
+$tertiary-color: #ec4899;
+$quaternary-color: #f59e0b;
+
+$success-color: #10b981;
+$warning-color: #f59e0b;
+$error-color: #ef4444;
+
+$light-text: rgba(255, 255, 255, 0.9);
+$light-text-secondary: rgba(255, 255, 255, 0.6);
+$dark-text: #1e293b;
+
+// Component-specific colors
+$card-front-bg: color.adjust($primary-color, $lightness: -15%);
+$card-back-bg: color.adjust($quaternary-color, $lightness: -15%);
+$stats-bg-color: #1e293b;
+$controls-bg-color: #1e293b;
+$history-bg-color: #1e293b;
+
+// Spacing
+$spacing-xs: 0.25rem; // 4px
+$spacing-sm: 0.5rem; // 8px
+$spacing-md: 1rem; // 16px
+$spacing-lg: 2rem; // 32px
+$spacing-xl: 3rem; // 48px
+
+// Grid
+$grid-gap: 0.75rem; // 12px for desktop
+$grid-gap-tablet: 0.5rem; // 8px for tablet
+$grid-gap-mobile: 0.25rem; // 4px for mobile
+
+// Border radius
+$border-radius: 0.5rem; // 8px
+$border-radius-sm: 0.25rem; // 4px
+
+// Z-index
+$z-index-modal: 100;
+
+// Responsive breakpoints
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+
+// Card styling
+$card-border-radius: 0.5rem;
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);

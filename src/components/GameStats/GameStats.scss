@@ -1,0 +1,147 @@
+@use '@styles/variables' as *;
+@use '@styles/mixins' as *;
+
+.game-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  background-color: $stats-bg-color;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+
+  &__item {
+    flex: 1;
+    min-width: 120px;
+    padding: $spacing-sm;
+    background-color: rgba($light-text, 0.05);
+    border-radius: $border-radius-sm;
+
+    @include responsive(mobile) {
+      min-width: 100px;
+    }
+  }
+
+  &__label {
+    display: block;
+    font-size: 0.9rem;
+    color: $light-text-secondary;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $light-text;
+  }
+
+  &__progress {
+    width: 100%;
+
+    &-text {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: $spacing-xs;
+      font-weight: 500;
+    }
+
+    &-bar {
+      height: 12px;
+      background-color: rgba($light-text, 0.1);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    &-fill {
+      height: 100%;
+      background: linear-gradient(90deg, $primary-color, $secondary-color);
+      transition: width 0.3s ease-in-out;
+      border-radius: 6px;
+      position: relative;
+
+      &::after {
+        content: attr(data-progress) '%';
+        position: absolute;
+        right: 5px;
+        top: -2px;
+        font-size: 0.7rem;
+        font-weight: bold;
+        color: $light-text;
+        opacity: 0.9;
+
+        @include responsive(mobile) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &__completion {
+    width: 100%;
+    margin-top: $spacing-md;
+    padding: $spacing-md;
+    background-color: rgba($success-color, 0.2);
+    border-radius: $border-radius;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+
+    &-message {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: $success-color;
+      margin-bottom: $spacing-sm;
+    }
+
+    &-details {
+      font-size: 1.1rem;
+      color: $light-text;
+
+      p {
+        margin: $spacing-xs 0;
+      }
+    }
+  }
+
+  @include responsive(tablet) {
+    flex-direction: row;
+
+    &__item {
+      padding: $spacing-xs;
+    }
+
+    &__value {
+      font-size: 1.3rem;
+    }
+  }
+
+  @include responsive(mobile) {
+    gap: $spacing-sm;
+    padding: $spacing-sm;
+
+    &__value {
+      font-size: 1.2rem;
+    }
+
+    &__completion {
+      &-message {
+        font-size: 1.5rem;
+      }
+
+      &-details {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

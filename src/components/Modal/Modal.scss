@@ -1,0 +1,120 @@
+@use 'sass:color';
+@use '@styles/variables' as *;
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: $z-index-modal;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.modal {
+  background-color: $bg-color;
+  border-radius: $border-radius;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  animation: slideIn 0.3s ease-out;
+
+  &__header {
+    padding: $spacing-sm;
+    background-color: rgba($dark-text, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.2rem;
+    color: $light-text;
+  }
+
+  &__close {
+    background: none;
+    border: none;
+    color: $light-text-secondary;
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+
+    &:hover {
+      color: $light-text;
+    }
+  }
+
+  &__content {
+    padding: $spacing-md;
+  }
+
+  &__message {
+    margin: 0;
+    color: $light-text;
+    line-height: 1.5;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: $spacing-sm;
+    padding: $spacing-sm;
+    background-color: rgba($dark-text, 0.2);
+  }
+
+  &__button {
+    padding: $spacing-xs $spacing-md;
+    border: none;
+    border-radius: $border-radius-sm;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &--cancel {
+      background-color: rgba($light-text, 0.2);
+      color: $light-text;
+
+      &:hover {
+        background-color: rgba($light-text, 0.3);
+      }
+    }
+
+    &--confirm {
+      background-color: $error-color;
+      color: $light-text;
+
+      &:hover {
+        background-color: color.adjust($error-color, $lightness: -10%);
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

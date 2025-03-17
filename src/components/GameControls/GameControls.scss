@@ -1,0 +1,133 @@
+@use 'sass:color';
+@use '@styles/variables' as *;
+@use '@styles/mixins' as *;
+
+.game-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  background-color: $controls-bg-color;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+
+  &__group {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  &__label {
+    display: block;
+    font-size: 0.9rem;
+    color: $light-text-secondary;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__select {
+    width: 100%;
+    padding: $spacing-sm;
+    background-color: rgba($light-text, 0.1);
+    border: 1px solid rgba($light-text, 0.3);
+    border-radius: $border-radius-sm;
+    color: $light-text;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    appearance: none;
+    background-image: url('@assets/images/icons/arrow-down.svg');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 30px;
+
+    &[data-difficulty='easy'] {
+      border-left: 4px solid $primary-color;
+    }
+
+    &[data-difficulty='medium'] {
+      border-left: 4px solid $secondary-color;
+    }
+
+    &[data-difficulty='hard'] {
+      border-left: 4px solid $tertiary-color;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: rgba($light-text, 0.15);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    option {
+      background-color: $bg-color;
+      color: $light-text;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    gap: $spacing-sm;
+    flex-wrap: wrap;
+    flex: 1;
+    min-width: 200px;
+    justify-content: flex-end;
+  }
+
+  &__button {
+    padding: $spacing-sm $spacing-md;
+    border: none;
+    border-radius: $border-radius-sm;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 120px;
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    &--reset {
+      background-color: $warning-color;
+      color: $dark-text;
+
+      &:hover:not(:disabled) {
+        background-color: color.adjust($warning-color, $lightness: -10%);
+      }
+    }
+
+    &--new {
+      background-color: $primary-color;
+      color: $light-text;
+
+      &:hover:not(:disabled) {
+        background-color: color.adjust($primary-color, $lightness: -10%);
+      }
+    }
+  }
+
+  @include responsive(tablet) {
+    &__buttons {
+      justify-content: flex-start;
+    }
+  }
+
+  @include responsive(mobile) {
+    flex-direction: column;
+    gap: $spacing-sm;
+    padding: $spacing-sm;
+
+    &__group,
+    &__buttons {
+      min-width: 100%;
+    }
+
+    &__button {
+      flex: 1;
+    }
+  }
+}
