@@ -6,9 +6,10 @@ import './GameStats.scss'
 import { useShallow } from 'zustand/shallow'
 
 const GameStats = () => {
-  const { attempts, elapsedTime, matchedPairs, difficulty, isGameCompleted } = useGameStore(
+  const { attempts, currentTime, elapsedTime, matchedPairs, difficulty, isGameCompleted } = useGameStore(
     useShallow((state: GameStore) => ({
       attempts: state.attempts,
+      currentTime: state.currentTime,
       elapsedTime: state.elapsedTime,
       matchedPairs: state.matchedPairs,
       difficulty: state.difficulty,
@@ -30,7 +31,7 @@ const GameStats = () => {
     <div className='game-stats'>
       <div className='game-stats__item'>
         <span className='game-stats__label'>{t('time')}</span>
-        <span className='game-stats__value'>{formatTime(elapsedTime)}</span>
+        <span className='game-stats__value'>{formatTime(currentTime)}</span>
       </div>
 
       <div className='game-stats__item'>
