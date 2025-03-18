@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useLanguageStore } from '@store/languageStore'
 import { useGameStore } from '@store/gameStore'
+import { preloadSounds } from '@utils/audio'
 
 import LanguageSwitch from '@components/LanguageSwitch'
 import GameControls from '@components/GameControls'
@@ -8,11 +9,16 @@ import GameStats from '@components/GameStats'
 import GameBoard from '@components/GameBoard'
 import GameHistory from '@components/GameHistory'
 import Confetti from '@components/Confetti'
+
 import './App.scss'
 
 const App = () => {
   const initializeGame = useGameStore((state) => state.initializeGame)
   const { t } = useLanguageStore()
+
+  useEffect(() => {
+    preloadSounds()
+  }, [])
 
   useEffect(() => {
     initializeGame()

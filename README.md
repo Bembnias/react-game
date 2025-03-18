@@ -11,6 +11,8 @@ A classic memory card matching game built with React, TypeScript, Vite, SCSS and
 - 🔄 Multiple difficulty levels (Easy, Medium, Hard)
 - 📱 Fully responsive design for all devices
 - 🌐 Simple internationalization (polish & english)
+- 🎺 Sound effects (card flip, cards match, victory)
+- 🎉 Animations (card flip, victory confetti)
 
 ## Technologies Used
 

@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { immer } from 'zustand/middleware/immer'
 import { Card, DifficultyLevel, DIFFICULTY_CONFIG, GameState, GameStore } from './types'
 import { saveGameToHistory } from './historyStore'
+import { playSound } from '@utils/audio'
 
 const generateCards = (difficulty: DifficultyLevel): Card[] => {
   const { totalPairs } = DIFFICULTY_CONFIG[difficulty]
@@ -91,6 +92,8 @@ export const useGameStore = create<GameStore>()(
       // Dont flip already flipped or matched cards
       if (!card || card.isFlipped || card.isMatched) return
 
+      playSound('flip')
+
       set((state) => {
         // Flip the selected card
         const updatedCard = { ...card, isFlipped: true }
@@ -130,12 +133,16 @@ export const useGameStore = create<GameStore>()(
         state.flippedCards = []
 
         if (isMatch) {
+          playSound('match')
+
           state.matchedPairs += 1
 
+          // Check if game is completed
           const { totalPairs } = DIFFICULTY_CONFIG[state.difficulty]
           if (state.matchedPairs === totalPairs) {
-            state.isGameCompleted = true
+            playSound('victory')
 
+            state.isGameCompleted = true
             state.elapsedTime = state.currentTime
 
             const stats = {
