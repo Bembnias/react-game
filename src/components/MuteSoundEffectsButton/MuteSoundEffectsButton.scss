@@ -1,0 +1,29 @@
+@use '@styles/variables' as *;
+
+.mute-button {
+  background-color: rgba($light-text, 0.1);
+  border: 2px solid transparent;
+  border-radius: $border-radius-sm;
+  color: $light-text;
+  padding: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12px;
+
+  &:hover {
+    background-color: rgba($light-text, 0.2);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+  }
+
+  img {
+    width: 20px;
+    display: block;
+  }
+}

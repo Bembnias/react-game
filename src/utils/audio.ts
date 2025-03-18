@@ -1,3 +1,5 @@
+import { useAudioStore } from '../store/audioStore'
+
 const SOUND_URLS = {
   flip: new URL('@assets/audio/flip.mp3', import.meta.url).href,
   match: new URL('@assets/audio/match.mp3', import.meta.url).href,
@@ -23,6 +25,9 @@ export const preloadSounds = (): void => {
  */
 export const playSound = (sound: keyof typeof SOUND_URLS, volume = 0.5): void => {
   try {
+    const { muted } = useAudioStore.getState()
+    if (muted) return
+
     const audio = audioCache[sound] || new Audio(SOUND_URLS[sound])
 
     audio.volume = volume

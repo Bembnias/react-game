@@ -18,6 +18,12 @@
       justify-content: flex-end;
       margin-bottom: $spacing-md;
     }
+
+    &-actions {
+      display: flex;
+      gap: $spacing-xs;
+      align-items: center;
+    }
   }
 
   &__title {

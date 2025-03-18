@@ -86,3 +86,8 @@ export interface HistoryActions {
   clearHistory: () => void
   loadHistoryFromStorage: () => void
 }
+
+export interface AudioState {
+  muted: boolean
+  toggleMute: () => void
+}

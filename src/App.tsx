@@ -9,6 +9,7 @@ import GameStats from '@components/GameStats'
 import GameBoard from '@components/GameBoard'
 import GameHistory from '@components/GameHistory'
 import Confetti from '@components/Confetti'
+import MuteSoundEffectsButton from '@components/MuteSoundEffectsButton'
 
 import './App.scss'
 
@@ -29,7 +30,10 @@ const App = () => {
       <div className='container'>
         <header className='app__header'>
           <div className='app__header-top'>
-            <LanguageSwitch />
+            <div className='app__header-actions'>
+              <LanguageSwitch />
+              <MuteSoundEffectsButton />
+            </div>
           </div>
           <h1 className='app__title'>{t('title')}</h1>
           <p className='app__subtitle'>{t('subtitle')}</p>
