@@ -11,7 +11,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "start": "vite preview"
+    "start": "serve -s dist"
   },
   "dependencies": {
     "immer": "^10.1.1",
