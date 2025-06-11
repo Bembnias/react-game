@@ -2,6 +2,9 @@
 
 A classic memory card matching game built with React, TypeScript, Vite, SCSS and Zustand for state management.
 
+### Live Demo
+🟢 https://react-game-c103179ff248.herokuapp.com
+
 ## Features
 
 - 🎮 Classic memory card matching gameplay
