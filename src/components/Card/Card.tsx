@@ -20,6 +20,10 @@ const Card = ({ id, imageId, isFlipped, isMatched, onClick }: CardProps) => {
     }
   }
 
+  const getCardImageUrl = (id: number) => {
+    return new URL(`../../assets/images/card-images/crypto-${id}.svg`, import.meta.url).href
+  }
+
   return (
     <div
       className={cardClasses}
@@ -35,7 +39,7 @@ const Card = ({ id, imageId, isFlipped, isMatched, onClick }: CardProps) => {
 
         <div className='card__face card__face--front'>
           <div className='card__image' data-image-id={imageId + 1}>
-            <img src={`/src/assets/images/card-images/crypto-${imageId + 1}.svg`} alt='Memory card' />
+            <img src={getCardImageUrl(imageId + 1)} alt='Memory card' />
           </div>
         </div>
       </div>

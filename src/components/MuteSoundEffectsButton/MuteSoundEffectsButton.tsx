@@ -2,6 +2,8 @@ import { useCallback } from 'react'
 import { useShallow } from 'zustand/shallow'
 import { useAudioStore } from '@store/audioStore'
 import { AudioState } from '@store/types'
+import volumeOffIcon from '../../assets/images/icons/volume-off-icon.svg'
+import volumeOnIcon from '../../assets/images/icons/volume-on-icon.svg'
 import './MuteSoundEffectsButton.scss'
 
 const MuteSoundEffectsButton = () => {
@@ -24,9 +26,9 @@ const MuteSoundEffectsButton = () => {
       title={muted ? 'Unmute sounds' : 'Mute sounds'}
     >
       {muted ? (
-        <img src='src/assets/images/icons/volume-off-icon.svg' alt='Mute sound effects button' />
+        <img src={volumeOffIcon} alt='Mute sound effects button' />
       ) : (
-        <img src='src/assets/images/icons/volume-on-icon.svg' alt='Unmute sound effect button' />
+        <img src={volumeOnIcon} alt='Unmute sound effect button' />
       )}
     </button>
   )

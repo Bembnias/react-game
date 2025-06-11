@@ -10,7 +10,6 @@ export interface DifficultyConfig {
   totalPairs: number
 }
 
-// Config for each difficulty level
 export const DIFFICULTY_CONFIG: Record<DifficultyLevel, DifficultyConfig> = {
   [DifficultyLevel.EASY]: {
     rows: 4,

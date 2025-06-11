@@ -12,6 +12,9 @@ export default defineConfig({
       '@assets': path.resolve(__dirname, 'src/assets'),
     },
   },
+  build: {
+    assetsInlineLimit: 0,
+  },
   server: {
     port: 3000,
     allowedHosts: true,
